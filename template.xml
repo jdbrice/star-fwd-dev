@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<config>
+
+	<Output url="results.root" />
+
+	<SiRasterizer active="true" phi="0.004" r="2" />
+
+	<TrackFinder nIterations="1">
+		<Iteration> 
+			<SegmentBuilder>
+				<Criteria max="1.11" min="0.9" name="Crit2_RZRatio" />
+				<Criteria max="10" min="0" name="Crit2_DeltaPhi" />	
+				<Criteria max="20" min="-5" name="Crit2_DeltaRho" />
+				<Criteria max="1.1" min="0.9" name="Crit2_StraightTrackRatio" />
+			</SegmentBuilder>
+
+			<ThreeHitSegments>
+				<Criteria max="90" min="0" name="Crit3_3DAngle" />
+				<Criteria max="100" min="0" name="Crit3_PT" />
+				<Criteria max="1.01" min="0" name="Crit3_ChangeRZRatio" />
+				<Criteria max="2" min="0" name="Crit3_2DAngle" />
+			</ThreeHitSegments>
+		</Iteration>
+
+		
+		<ThreeHitSegments>
+			<Criteria max="50" min="0" name="Crit3_2DAngle" />
+			
+		</ThreeHitSegments>
+
+		<Connector distance="1" />
+
+		<SubsetNN active="true" min-hits-on-track="4">
+			
+			
+			<Omega>0.99</Omega>
+			<StableThreshold>0.001</StableThreshold>
+		</SubsetNN>	
+
+		<HitRemover active="true">
+		</HitRemover>
+
+	</TrackFinder>
+
+	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="false" refitSi="true">
+		<Vertex includeInFit="true" sigmaXY="0.05" sigmaZ="5" />
+		
+		
+		<Hits sigmaSiXY="3" sigmaXY="0.01" useFCM="true" />
+	</TrackFitter>
+</config>
