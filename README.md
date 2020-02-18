@@ -118,35 +118,35 @@ In the following I use the syntax `node.node:attribute`, e.g. the `sigmaXY` attr
 
 
 ### Track Finding
-Purpose: control the track finding parameters used by the CA procedure. All of these are implicitly prefixed by `TrackFinder` (i.e. inside the `TrackFinder` Node):
-
-**:nIterations** - determines the number of iterations to run. An iteration is puctuated by track fitting and then removing hits that belong to accepted tracks.
+Purpose: control the track finding parameters used by the CA procedure. All of these are implicitly prefixed by `TrackFinder` (i.e. inside the `TrackFinder` Node):  
   
-**Iteration[1..N]** - Specify parameters for a given iteration, if they are not specified here, then the default will be used as defined in `TrackFinder`
-**Iteration.SegmentBuilder** - parameters for the 2-hit segment builder. This is the first step in the CA track building process
-**Iteration.ThreeHitSegments** - parameters for the 3-hit segment builder
-
-**Connector:distance** - determines whether or not tracks can skip layers. For now we require all 4 sTGC hits, so no skipping is allowed. Should not be changed for normal studies.
-
-**SubsetNN** - controls the Hopfield Neural Network used to select the best subset of tracks with highest quality that do not share hits.
-**SubsetNN:active** - turn it on and off
-**SubsetNN:min-hits-on-track** - specify the minimum number of hits required for a track seed.
-**SubsetNN.Omega** - parameter controls weight of quality
-**SubsetNN:StableThreshold** - controls how much noise is considered stable, changing may help speed up convergence
+**:nIterations** - determines the number of iterations to run. An iteration is puctuated by track fitting and then removing hits that belong to accepted tracks.  
   
-**HitRemover:active** - controls whether or not hits are removed after each iteration
-
+**Iteration[1..N]** - Specify parameters for a given iteration, if they are not specified here, then the default will be used as defined in `TrackFinder`  
+**Iteration.SegmentBuilder** - parameters for the 2-hit segment builder. This is the first step in the CA track building process  
+**Iteration.ThreeHitSegments** - parameters for the 3-hit segment builder  
+  
+**Connector:distance** - determines whether or not tracks can skip layers. For now we require all 4 sTGC hits, so no skipping is allowed. Should not be changed for normal studies.  
+  
+**SubsetNN** - controls the Hopfield Neural Network used to select the best subset of tracks with highest quality that do not share hits.  
+**SubsetNN:active** - turn it on and off  
+**SubsetNN:min-hits-on-track** - specify the minimum number of hits required for a track seed.  
+**SubsetNN.Omega** - parameter controls weight of quality  
+**SubsetNN:StableThreshold** - controls how much noise is considered stable, changing may help speed up convergence  
+  
+**HitRemover:active** - controls whether or not hits are removed after each iteration  
+  
 ### Track Fitting
-Track fitting is controlled by parameters in `TrackFitter` Node:
-**:constB** - use const B-field vs. real STAR B-field
-**:display** - can be used to display events in GenFit Event Display, not going to work well on RCF/docker so may be removed in future
-**:noMaterialEffects** - turn on/off material effects in Kalman Filter.
+Track fitting is controlled by parameters in `TrackFitter` Node:  
+**:constB** - use const B-field vs. real STAR B-field  
+**:display** - can be used to display events in GenFit Event Display, not going to work well on RCF/docker so may be removed in future  
+**:noMaterialEffects** - turn on/off material effects in Kalman Filter.  
   
-**.Vertex:sigmaXY** - specifies the XY resolution of the primary vertex
-**.Vertex:sigmaZ** - resolution of the Z coordinate of primary vertex
-**.Vertex:includeInFit** - include / exclude PV in the track fitting
+**.Vertex:sigmaXY** - specifies the XY resolution of the primary vertex  
+**.Vertex:sigmaZ** - resolution of the Z coordinate of primary vertex  
+**.Vertex:includeInFit** - include / exclude PV in the track fitting  
   
-**.Hits:sigmaXY** - the xy resolution for the sTGC hits (used when calculating cov mat), only used if **.Hits:useFCM** = `true`
+**.Hits:sigmaXY** - the xy resolution for the sTGC hits (used when calculating cov mat), only used if **.Hits:useFCM** = `true`  
 
 
 
