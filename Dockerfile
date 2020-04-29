@@ -7,6 +7,7 @@ ARG STAR_BUILD_TYPE=Release
 RUN yum install -y git
 WORKDIR /tmp
 RUN git clone https://github.com/jdbrice/star-sw.git star-sw-fwd
+COPY StForwardTrackMaker/StRoot /tmp/star-sw-fwd/StRoot
 RUN rm -rf /tmp/star-build && mkdir /tmp/star-build
 WORKDIR /tmp/star-build
 

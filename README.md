@@ -26,6 +26,9 @@ NOTE: if you are far from BNL or just want to make running faster you can use:
 ```
 This will disable the network inside the container, making the STAR DB access return instantly. It may speed up the running of the code a lot if you have a poor connection to BNL. 
 
+If there exists a star-cvs folder (not part of repo, clone it yourself) then this will mount the geometry into place for build.
+
+
 directory mounted into the container. Before running the code, setup the STAR environment variables:
 ```sh
 source star_env

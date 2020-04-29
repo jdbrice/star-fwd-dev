@@ -4,3 +4,8 @@
 work/paw.metafile
 work/LOG
 *.pdf
+.DS_Store
+*.tar.gz
+*BUILD_LOG
+*.clang-format
+*DEBUG

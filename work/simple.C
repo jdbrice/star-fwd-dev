@@ -1,5 +1,5 @@
 TString infile = "testg.fzd";
-void simple( size_t n_events = 1000, const char *filename = 0 )
+void simple( size_t n_events = 1000, const char *filename = 0, std::string configFile = "config.xml" )
 {
 
    if (filename) infile = filename;
@@ -36,6 +36,8 @@ void simple( size_t n_events = 1000, const char *filename = 0 )
 
    // Create genfit forward track maker and add it to the chain before the MuDst maker
    StgMaker *gmk = new StgMaker();
+   gmk->SetConfigFile( configFile );
+   gmk->GenerateTree( false );
    // chain->AddAfter( "0Event", gmk );
 
    // And initialize it, since we have already initialized the chain
