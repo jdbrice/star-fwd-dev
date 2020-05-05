@@ -9,3 +9,5 @@ work/LOG
 *BUILD_LOG
 *.clang-format
 *DEBUG
+star-cvs/
+star-cvs
