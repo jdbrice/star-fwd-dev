@@ -89,55 +89,55 @@ Example configuration and some information about the various parts below:
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 
-	<!-- The below line is still needed, do not change for now -->
-	<Input url="SimHitsTuple_1track_0p2_5.root" type="sim_mc" max-events="200" first-event="0" si="false" />
+    <!-- The below line is still needed, do not change for now -->
+    <Input url="SimHitsTuple_1track_0p2_5.root" type="sim_mc" max-events="200" first-event="0" si="false" />
 
-	<!-- This is the output file for the QA ROOT file produced by the tracking code -->
-	<Output url="results.root" />
+    <!-- This is the output file for the QA ROOT file produced by the tracking code -->
+    <Output url="results.root" />
 
-	<!-- CONFIGURATION for Track finding -->
-	<TrackFinder nIterations="1">
-		<Iteration> <!-- Options for first iteration -->
-			<SegmentBuilder>
-				<Criteria name="Crit2_RZRatio" min="0.9" max="1.11" />
-				<Criteria name="Crit2_DeltaPhi" min="0" max="10" />	
-				<Criteria name="Crit2_DeltaRho" min="-5" max="20"/>
-				<Criteria name="Crit2_StraightTrackRatio" min="0.9" max="1.1"/>
-			</SegmentBuilder>
+    <!-- CONFIGURATION for Track finding -->
+    <TrackFinder nIterations="1">
+        <Iteration> <!-- Options for first iteration -->
+            <SegmentBuilder>
+                <Criteria name="Crit2_RZRatio" min="0.9" max="1.11" />
+                <Criteria name="Crit2_DeltaPhi" min="0" max="10" /> 
+                <Criteria name="Crit2_DeltaRho" min="-5" max="20"/>
+                <Criteria name="Crit2_StraightTrackRatio" min="0.9" max="1.1"/>
+            </SegmentBuilder>
 
-			<ThreeHitSegments>
-				<Criteria name="Crit3_3DAngle" min="0" max="90" />
-				<Criteria name="Crit3_PT" min="0" max="100" />
-				<Criteria name="Crit3_ChangeRZRatio" min="0" max="1.01" />
-				<Criteria name="Crit3_2DAngle" min="0" max="2" />
-			</ThreeHitSegments>
-		</Iteration>
+            <ThreeHitSegments>
+                <Criteria name="Crit3_3DAngle" min="0" max="90" />
+                <Criteria name="Crit3_PT" min="0" max="100" />
+                <Criteria name="Crit3_ChangeRZRatio" min="0" max="1.01" />
+                <Criteria name="Crit3_2DAngle" min="0" max="2" />
+            </ThreeHitSegments>
+        </Iteration>
 
-		<!-- These are used if not defined inside <Iteration> -->
-		<ThreeHitSegments>
-			<Criteria name="Crit3_2DAngle" min="0" max="50" />
-		</ThreeHitSegments>
+        <!-- These are used if not defined inside <Iteration> -->
+        <ThreeHitSegments>
+            <Criteria name="Crit3_2DAngle" min="0" max="50" />
+        </ThreeHitSegments>
 
-		<Connector distance="1"/>
+        <Connector distance="1"/>
 
-		<SubsetNN active="true" min-hits-on-track="4" >
-			<Omega>0.99</Omega>
-			<StableThreshold>0.001</StableThreshold>
-		</SubsetNN>	
+        <SubsetNN active="true" min-hits-on-track="4" >
+            <Omega>0.99</Omega>
+            <StableThreshold>0.001</StableThreshold>
+        </SubsetNN> 
 
-		<HitRemover active="true">
-		</HitRemover>
+        <HitRemover active="true">
+        </HitRemover>
 
-	</TrackFinder>
+    </TrackFinder>
 
-	<!-- CONFIGURATION for Track Fitting -->
-	<TrackFitter constB="true" display="false" noMaterialEffects="true" >
+    <!-- CONFIGURATION for Track Fitting -->
+    <TrackFitter constB="true" display="false" noMaterialEffects="true" >
         <Geometry stgc="" si="144.48788, 167.98288, 191.47788" /> <!-- Override z location of either detector. Must provide all locations for a give system (4 for STGC, 3 for Si) -->
-		<Vertex sigmaXY="0.01" sigmaZ="5" includeInFit="true" />
-		
-		<!-- for MC only -->
-		<Hits sigmaXY="0.01" useFCM="true" />
-	</TrackFitter>
+        <Vertex sigmaXY="0.01" sigmaZ="5" includeInFit="true" />
+        
+        <!-- for MC only -->
+        <Hits sigmaXY="0.01" useFCM="true" />
+    </TrackFitter>
 
 
 </config>
