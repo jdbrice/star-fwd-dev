@@ -176,8 +176,8 @@ Track fitting is controlled by parameters in `TrackFitter` Node:
 **:display** - can be used to display events in GenFit Event Display, not going to work well on RCF/docker so may be removed in future  
 **:noMaterialEffects** - turn on/off material effects in Kalman Filter.  
   
-**.Geometry:si** - optional list of z locations for Si detector planes (must be length 3 or not used)
-**.Geometry:stgc** - optional list of z locations for stgc detector planes (must be length 4 or not used)
+**.Geometry:si** - optional list of z locations for Si detector planes (must be length 3 or not used)   
+**.Geometry:stgc** - optional list of z locations for stgc detector planes (must be length 4 or not used)   
 
 **.Vertex:sigmaXY** - specifies the XY resolution of the primary vertex  
 **.Vertex:sigmaZ** - resolution of the Z coordinate of primary vertex  
