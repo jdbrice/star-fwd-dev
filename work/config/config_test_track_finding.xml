@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 
-	<Output url="results.root" />
+	<Output url="results_test_track_finding.root" />
 
 	<TrackFinder nIterations="1">
 		<Iteration> <!-- Options for first iteration -->
@@ -13,16 +13,16 @@
 			</SegmentBuilder>
 
 			<ThreeHitSegments>
-				<Criteria name="Crit3_3DAngle" min="0" max="90" />
-				<Criteria name="Crit3_PT" min="0" max="100" />
-				<Criteria name="Crit3_ChangeRZRatio" min="0" max="1.01" />
-				<Criteria name="Crit3_2DAngle" min="0" max="2" />
+				<!-- <Criteria name="Crit3_3DAngle" min="0" max="90" /> -->
+				<!-- <Criteria name="Crit3_PT" min="0" max="100" /> -->
+				<Criteria name="Crit3_ChangeRZRatio" min="0" max="1.11" />
+				<Criteria name="Crit3_2DAngle" min="0" max="5" />
 			</ThreeHitSegments>
 		</Iteration>
 
 		<!-- These are used if not defined inside <Iteration> -->
 		<ThreeHitSegments>
-			<Criteria name="Crit3_2DAngle" min="0" max="50" />
+			<!-- <Criteria name="Crit3_2DAngle" min="0" max="50" /> -->
 			<!-- <Criteria name="Crit3_PT" min="0.1" max="5" /> -->
 		</ThreeHitSegments>
 
@@ -40,10 +40,10 @@
 
 	</TrackFinder>
 
-	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="false" refitSi="true">
-		<Vertex sigmaXY="0.01" sigmaZ="5" includeInFit="true" />
+	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="true" refitSi="false">
+		<Vertex sigmaXY="1.0" sigmaZ="5" includeInFit="true" />
 		
 		<!-- for MC only -->
-		<Hits sigmaXY="0.01" useFCM="true" sigmaSiXY="0.01" />
+		<Hits sigmaXY="0.01" useFCM="true" />
 	</TrackFitter>
 </config>

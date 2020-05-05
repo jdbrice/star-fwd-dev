@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Output url="mc_seed_stgc.root" />
+	<!-- WITHOUT a <TrackFinder> node, use MC (perfect) TrackFinding -->
+
+	<SiRasterizer active="true" r="2.75" phi="0.004090615" />
+
+	<TrackFitter constB="true" noMaterialEffects="true" off="false" refitSi="false" mcSeed="true">
+        <Geometry stgc="" si="144.48788, 167.98288, 191.47788" />
+		<KalmanFitterRefTrack MaxIterations="10" MaxFailedHits="-1" DebugLvl="0" />
+		<Vertex sigmaXY="0.02" sigmaZ="5.0" includeInFit="true" />
+        <McFilter quality-min="1.0" pt-min="0.2" eta-min="2.5" eta-max="4.0" />
+		
+		<!-- for MC only -->
+		<Hits sigmaXY="0.01" useFCM="true" />
+	</TrackFitter>
+</config>

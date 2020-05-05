@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Output url="results_test_krishan_study_pvrefit_nom.root" />
+	<!-- WITHOUT a <TrackFinder> node, use MC (perfect) TrackFinding -->
+
+	<SiRasterizer active="true" r="2.75" phi="0.004090615" />
+
+	<TrackFitter constB="true" display="false" noMaterialEffects="true" off="false" refitSi="true">
+		<KalmanFitterRefTrack MaxFailedHits="-1" DebugLvl="0" />
+		<Vertex sigmaXY="0.01" sigmaZ="15" includeInFit="true" />
+		
+		<!-- for MC only -->
+		<Hits sigmaXY="0.01" useFCM="true" />
+	</TrackFitter>
+</config>

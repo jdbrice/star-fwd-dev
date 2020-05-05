@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<ThreeHitSegments>
+		<Criteria name="Crit3_3DAngle" min="0" max="90" />
+		<Criteria name="Crit3_PT" min="0" max="10000" />
+		<Criteria name="Crit3_ChangeRZRatio" min="0" max="100" />
+		<Criteria name="Crit3_2DAngle" min="0" max="100" />
+	</ThreeHitSegments>
+</config>

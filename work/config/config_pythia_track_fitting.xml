@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<Output url="results_pythia_track_fitting.root" />
+
+	<TrackFinder nIterations="1">
+		<Iteration> <!-- Options for first iteration -->
+			<Include url="Crit2_Pythia.xml" />
+			<Include url="Crit3_Pythia.xml" />
+		</Iteration>
+
+		<!-- These are used if not defined inside <Iteration> -->
+		<ThreeHitSegments>
+			<!-- <Criteria name="Crit3_2DAngle" min="0" max="50" /> -->
+			<!-- <Criteria name="Crit3_PT" min="0.1" max="5" /> -->
+		</ThreeHitSegments>
+
+		<Connector distance="1"/>
+
+		<SubsetNN active="true" min-hits-on-track="4" >
+			<!-- <InitialTemp>2.1</InitialTemp> -->
+			<!-- <InfTemp>0.1</InfTemp> -->
+			<Omega>0.99</Omega>
+			<StableThreshold>0.001</StableThreshold>
+		</SubsetNN>	
+
+		<HitRemover active="true">
+		</HitRemover>
+
+	</TrackFinder>
+
+	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="false" refitSi="false">
+		<!-- <McFilter quality-min="1.0" pt-min="0.2" eta-min="2.5" eta-max="4.0" /> -->
+		<Vertex sigmaXY="0.02" sigmaZ="5" includeInFit="true" />
+		
+		<!-- for MC only -->
+		<Hits sigmaXY="0.01" useFCM="true" />
+	</TrackFitter>
+</config>

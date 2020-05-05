@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Output url="results_test_track_fitting_mcfinding0.root" />
+	<!-- WITHOUT a <TrackFinder> node, use MC (perfect) TrackFinding -->
+
+	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="false" refitSi="false">
+		<KalmanFitterRefTrack MaxFailedHits="1" />
+		<Vertex sigmaXY="0.05" sigmaZ="0.05" includeInFit="true" />
+		
+		<!-- for MC only -->
+		<Hits sigmaXY="0.01" useFCM="true" />
+	</TrackFitter>
+</config>

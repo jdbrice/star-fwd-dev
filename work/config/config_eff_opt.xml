@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 
-	<Output url="results_wopv_stgc_only.root" />
+	<Output url="results_eff_opt.root" />
 
 	<SiRasterizer active="true" r="3" phi="0.004090615" />
 
@@ -18,13 +18,13 @@
 				<!-- <Criteria name="Crit3_3DAngle" min="0" max="90" /> -->
 				<!-- <Criteria name="Crit3_PT" min="0" max="100" /> -->
 				<Criteria name="Crit3_ChangeRZRatio" min="0" max="1.11" />
-				<!-- <Criteria name="Crit3_2DAngle" min="0" max="2" /> -->
+				<Criteria name="Crit3_2DAngle" min="0" max="5" />
 			</ThreeHitSegments>
 		</Iteration>
 
 		<!-- These are used if not defined inside <Iteration> -->
 		<ThreeHitSegments>
-			<Criteria name="Crit3_2DAngle" min="0" max="50" />
+			<!-- <Criteria name="Crit3_2DAngle" min="0" max="50" /> -->
 			<!-- <Criteria name="Crit3_PT" min="0.1" max="5" /> -->
 		</ThreeHitSegments>
 
@@ -42,7 +42,7 @@
 
 	</TrackFinder>
 
-	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="false" refitSi="false">
+	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="true" refitSi="false">
 		<Vertex sigmaXY="0.05" sigmaZ="5" includeInFit="false" />
 		
 		<!-- for MC only -->
