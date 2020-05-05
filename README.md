@@ -57,7 +57,7 @@ NOTE: As of 05/05/2020 - we know that the high detail Si Geometry causes GenFit 
 ./geom-build.sh
 ```
 This takes `~10` minutes and rebuilds the Geometry from scratch to change the Fst geometry. This only needs to be done once when you start the container.
-If the z-location of the disks are changed then the config needs to be updated as well. (will be fixed soon to read from geometry).
+If the z-location of the disks are changed in the simulation stage then the config needs to be updated as well to reflect the z location of Si disks since current work-around is to remove Si geometry for track fitting.  Stgc z locations are picked up from the geometry, so you do not need to set these manually.
 
   
 ## Forward Tracking Configuration
@@ -132,6 +132,7 @@ Example configuration and some information about the various parts below:
 
 	<!-- CONFIGURATION for Track Fitting -->
 	<TrackFitter constB="true" display="false" noMaterialEffects="true" >
+        <Geometry stgc="" si="144.48788, 167.98288, 191.47788" /> <!-- Override z location of either detector. Must provide all locations for a give system (4 for STGC, 3 for Si) -->
 		<Vertex sigmaXY="0.01" sigmaZ="5" includeInFit="true" />
 		
 		<!-- for MC only -->
@@ -175,6 +176,9 @@ Track fitting is controlled by parameters in `TrackFitter` Node:
 **:display** - can be used to display events in GenFit Event Display, not going to work well on RCF/docker so may be removed in future  
 **:noMaterialEffects** - turn on/off material effects in Kalman Filter.  
   
+**.Geometry:si** - optional list of z locations for Si detector planes (must be length 3 or not used)
+**.Geometry:stgc** - optional list of z locations for stgc detector planes (must be length 4 or not used)
+
 **.Vertex:sigmaXY** - specifies the XY resolution of the primary vertex  
 **.Vertex:sigmaZ** - resolution of the Z coordinate of primary vertex  
 **.Vertex:includeInFit** - include / exclude PV in the track fitting  
