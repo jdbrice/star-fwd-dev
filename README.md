@@ -49,10 +49,40 @@ After making changes you can rebuild the code with:
 ./build
 ```
 If compilation succeeds then the code is updated.
+
+## Modifying the Geometry
+NOTE: As of 05/05/2020 - we know that the high detail Si Geometry causes GenFit to fail/run very very slowly. This can be worked around by using simpler / removing Fst geometry from GenFit tracking step. To do this rebuild the geometry before building code (above steps). 
+
+```sh
+./geom-build.sh
+```
+This takes `~10` minutes and rebuilds the Geometry from scratch to change the Fst geometry. This only needs to be done once when you start the container.
+If the z-location of the disks are changed then the config needs to be updated as well. (will be fixed soon to read from geometry).
+
   
 ## Forward Tracking Configuration
 The forward tracking code is driven by a configuration file `work/config.xml` :
 You can modify this file to change the configuration of the ForwardTrack maker.
+
+
+Example bare minimum configuration for Track Fitting using perfect (MC) track finding:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <Output url="results_fitting_mcfinding.root" />
+    <!-- WITHOUT a <TrackFinder> node, use MC (perfect) TrackFinding -->
+    
+    <!-- Track Fitter config -->
+    <!-- Dont refit with Si hits, use Mc Seed - i.e. momentum seed from MC truth -->
+    <TrackFitter refitSi="false" mcSeed="true"> 
+        <Vertex sigmaXY="0.05" sigmaZ="0.05" includeInFit="true" /> <!-- Set the PV resolution and niclude it in the track fit -->
+
+        <!-- for MC sTGC hits only only -->
+        <Hits sigmaXY="0.01" useFCM="true" />
+    </TrackFitter>
+</config>
+```
+
 
 Example configuration and some information about the various parts below:
 ```xml
