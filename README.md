@@ -193,5 +193,24 @@ The above code expects simulated hits available in the file `testg.fzd`.
 If you need to generate simulation input, you can use the project here: https://github.com/jdbrice/star-fwd-sim  
 
 
+## Output histograms and data files
+The tracking code does basic MC association and QA plotting to provide immediate feedback. Here is a (non-exhaustive) list of the most important histograms and what they mean:
+
+- "FitDuration" : Time taken for the track fitting step only
+- "FitStatus" : Shows the number of track seeds found, the number of successful/failed sTGC track fits, the number of possible/successful/failed refits with Si
+- "AllQuality" : The "quality" of all track seeds. Quality = # correct hits / #mc hits. Example, if a track has 4 hits with 3 from one MC track and one from another, then the quality is 3/4. If a track has 4 hits with 2 from one MC track and 2 from another then the quality is 2/4. If the track has 4 hits where each is from a different MC track then the quality is 1/4.
+- "DurationPerEvent" : The total time taken for the event including seed finding and track fitting
+- "EffVsMcEta" : (same for Pt, Eta, Phi) This is Acceptance x Efficiency for tracks with perfect quality (4/4).
+- "EffVsMcEtaAllQ" : (same for Pt, Eta, Phi) This is Acceptance x Efficiency for tracks with any quality.
+- "EffVsMcEta_4hits" : (same for Pt, Eta, Phi) This is Efficiency only (Acceptance factored out) for tracks with perfect quality
+- "EffVsMcEta_4hitsAllQ" : (same for Pt, Eta, Phi) This is Efficiency only (Acceptance factored out) for tracks with any quality
+- "EffVsMcPtEtaPhi..." : same as above but in 3D
+- "QMatrix" : 2D histogram of the reco charge vs. gen (MC level) charge.
+- "NQMatrix" : 2D histogram of the reco charge vs. gen (MC level) charge. Normalized to 1.0
+- "PtRes" : 1D histogram of pT resolution averaged over all (pT, eta, phi).
+- "PtResVsTrue" : 2D histogram of pT resolution vs. Mc pT averaged over ( eta, phi).
+- "InvPtRes" : 1D histogram of inverse pT resolution averaged over all (pT, eta, phi).
+- "InvPtResVsTrue" : 2D histogram of inverse pT resolution vs. Mc pT averaged over ( eta, phi).
+- "WrongQVsMcPt" : The number of tracks with a wrong charge vs. Mc Pt
 
 
