@@ -34,3 +34,4 @@ work/config/zp10_full.xml
 work/dev2021_master.C
 work/dev2021_master.gdml
 work/test/test-z.sh
+work/.vscode/

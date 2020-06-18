@@ -1,5 +1,24 @@
 cd /tmp/star-build
-make StgMaker/fast -j6 && cp /tmp/star-build/StRoot/StgMaker/libStgMaker.so /tmp/star-install/lib/libStgMaker.so
-# this is the full make and install line. Maybe needed if the above doesnt work
-#make StgMaker/fast&& make install -j6
+
+
+full_build=${1:-0}
+
+if [ $full_build -eq 1 ]; then
+    echo "Running CMAKE before build (needed first time)"
+
+STAR_PATCH=""
+STAR_BUILD_TYPE=Release
+cmake /tmp/star-sw -DSTAR_SRC=/tmp/star-cvs \
+    -DSTAR_PATCH=${STAR_PATCH} -DCMAKE_INSTALL_PREFIX=/tmp/star-install \
+    -DCERNLIB_ROOT=/cern/2006 -DCMAKE_BUILD_TYPE=${STAR_BUILD_TYPE}
+fi
+
+
+# Build + Install StgMaker Fast
+make StgMaker/fast -j2 && cp /tmp/star-build/StRoot/StgMaker/libStgMaker.so /tmp/star-install/lib/libStgMaker.so
+
+# Build + install StFtsSimulatorMaker Fast
+make StFtsFastSimulatorMaker/fast -j2 && cp /tmp/star-build/StRoot/StFtsFastSimulatorMaker/libStFtsFastSimulatorMaker.so /tmp/star-install/lib/libStFtsFastSimulatorMaker.so
+
+
 cd /tmp/work
