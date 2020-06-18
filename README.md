@@ -213,4 +213,19 @@ The tracking code does basic MC association and QA plotting to provide immediate
 - "InvPtResVsTrue" : 2D histogram of inverse pT resolution vs. Mc pT averaged over ( eta, phi).
 - "WrongQVsMcPt" : The number of tracks with a wrong charge vs. Mc Pt
 
+## Running on RCF
+
+You can run the tracking code on rcf now (05/11/2020).
+1. checkout this code : 
+```sh
+git clone https://github.com/jdbrice/star-fwd-dev.git
+cd star-fwd-dev/work
+```
+2. `starver dev`
+3. `bash`
+4. `source rcf_env.sh`
+5. `./run`
+
+
+
 

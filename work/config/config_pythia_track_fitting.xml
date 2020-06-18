@@ -29,9 +29,10 @@
 
 	</TrackFinder>
 
-	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="false" refitSi="false">
+	<TrackFitter constB="false" display="false" noMaterialEffects="false" off="false" refitSi="true">
 		<!-- <McFilter quality-min="1.0" pt-min="0.2" eta-min="2.5" eta-max="4.0" /> -->
-		<Vertex sigmaXY="0.02" sigmaZ="5" includeInFit="true" />
+		<Geometry stgc="" si="145, 159, 173" />
+        <Vertex sigmaXY="0.02" sigmaZ="5" includeInFit="false" />
 		
 		<!-- for MC only -->
 		<Hits sigmaXY="0.01" useFCM="true" />
