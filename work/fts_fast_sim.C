@@ -28,7 +28,7 @@ TFile *output = 0;
 
 void do_simple_ana(int i);
 
-void fts_fast_sim(int n = 10,
+void fts_fast_sim(int n = 1000,
                   const char *inFile = "fzd/f12_testg.fzd",
                   const char *geom = "dev2021",
                   bool SiIneff = false,

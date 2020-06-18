@@ -14,41 +14,65 @@ Now, make sure the submodules are initialized:
 git submodule update --init --recursive
 ```
 
-## Running the forward tracking code
+## Modifying and building
+The tracking code lives in `star-sw/StRoot/StgMaker/` so you can edit the code here.
+The Fst fast simulator is in `star-sw/StRoot/StFstFastSimulatorMaker/`.
+After making changes you can rebuild the code with:
+```sh
+./build 1 # full build (needed first time for StFtsFastSimulatorMaker)
+# OR
+./build # After first time, faster for updating code
+```
+
+NOTE a few things:
+1) You should always re-build the code after starting a new docker container to be sure it is up-to-date
+2) The first 
+If compilation succeeds then the code is updated.
+
+## Running the Docker container
 Launch a (docker) development environment with:
 ```sh
 ./dev.sh
 ```
 This will drop you into a docker container with the current path of `/tmp/work/` where work is you local `work` 
-NOTE: if you are far from BNL or just want to make running faster you can use:
+
+NOTE: if you are far from BNL or just want to make running faster and don't need STAR DB you can use:
 ```sh
 ./dev.sh --network none
 ```
 This will disable the network inside the container, making the STAR DB access return instantly. It may speed up the running of the code a lot if you have a poor connection to BNL. 
 
-If there exists a star-cvs folder (not part of repo, clone it yourself) then this will mount the geometry into place for build.
 
-
-directory mounted into the container. Before running the code, setup the STAR environment variables:
+## Setup the STAR environment and ROOT 
+Before running the code, setup the STAR environment variables:
 ```sh
 source star_env
 ```
   
 
+## Running the Forward Tracking code from GEANT hits
 Now you can run the code with:
 ```sh
 root4star -b -q -l simple.C
 ```
+OR you can use the script as:
+```sh
+./run.sh <n_events> <fzd_file> <xml_config>
+```
   
 This will produce an output called `results.root` with histograms etc.
 
-## Modifying and building
-The code lives in `star-sw/StRoot/StgMaker/` so you can edit the code here.  
-After making changes you can rebuild the code with:
+## Running the Fts Fast Simulator Maker (Standalone)
+For the default parameters simply use the script: 
 ```sh
-./build
+./fts_fast_sim.C
 ```
-If compilation succeeds then the code is updated.
+you can also specify the number of events and `FZD` file:
+```sh
+root4star -b -q -l 'fts_fast_sim( n_events, "fzd_file.fzd" )'
+```
+This produces an output file with the name `<input_fzd>_output.root` with the QA histograms.
+
 
 ## Modifying the Geometry
 NOTE: As of 05/05/2020 - we know that the high detail Si Geometry causes GenFit to fail/run very very slowly. This can be worked around by using simpler / removing Fst geometry from GenFit tracking step. To do this rebuild the geometry before building code (above steps). 
