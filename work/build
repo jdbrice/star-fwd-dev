@@ -20,5 +20,7 @@ make StgMaker/fast -j2 && cp /tmp/star-build/StRoot/StgMaker/libStgMaker.so /tmp
 # Build + install StFtsSimulatorMaker Fast
 make StFtsFastSimulatorMaker/fast -j2 && cp /tmp/star-build/StRoot/StFtsFastSimulatorMaker/libStFtsFastSimulatorMaker.so /tmp/star-install/lib/libStFtsFastSimulatorMaker.so
 
+# make StFstFitter/fast -j2 && cp /tmp/star-build/StRoot/StFstFitter/libStFstFitter.so /tmp/star-install/lib/libStFtsFastSimulatorMaker.so
+
 
 cd /tmp/work
