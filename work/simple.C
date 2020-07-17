@@ -1,5 +1,10 @@
+//usr/bin/env root4star -l -b -q  $0; exit $?
+// that is a valid shebang to run script as executable
+
 TString infile = "testg.fzd";
-void simple( size_t n_events = 1000, const char *filename = 0, std::string configFile = "config.xml" )
+void simple( size_t n_events = 1000, 
+    const char *filename = "fzd/pythia8_12302CABF07AC19789117412D1312D43_1009_250evts.fzd", 
+    std::string configFile = "config.xml" )
 {
 
    if (filename) infile = filename;

@@ -50,6 +50,17 @@ source star_env
 ```
   
 
+## Running the Forward Tracking code with the FST Fast Simulator
+Once inside the docker container session:
+```sh
+./fst_study.C
+```
+This will run the fast sim and StgMaker on the given `.fzd` and `config.xml` file. You can gain additional control over the parameters by running it as a root macro:
+```sh
+root4star -b -q -l 'fst_study.C( ... )'
+```
+
+
 ## Running the Forward Tracking code from GEANT hits
 Now you can run the code with:
 ```sh
