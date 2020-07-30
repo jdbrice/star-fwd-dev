@@ -27,9 +27,10 @@ int nP = 128; // phistrips
 TFile *output = 0;
 
 void do_simple_ana(int i);
-
-void fts_fast_sim(int n = 1000,
-                  const char *inFile = "fzd/f12_testg.fzd",
+// "fzd/f7_testg.fzd"
+void si_study(   int n = 250,
+                  const char *inFile = "fzd/pythia8_12302CABF07AC19789117412D1312D43_1009_250evts.fzd",
+                  std::string configFile = "config.xml",
                   const char *geom = "dev2021",
                   bool SiIneff = false,
                   bool graph = false) {
@@ -50,18 +51,23 @@ void fts_fast_sim(int n = 1000,
     // Needed for StarRandom
     // gSystem->Load( "StarGeneratorUtil" );
 
-    gSystem->Load("libStFtsFastSimulatorMaker.so");
+    gSystem->Load("libStSiSimulatorMaker.so");
+
+    gSystem->Load("libgenfit2.so");
+   gSystem->Load("libKiTrack.so");
+   gSystem->Load("libStEventUtilities.so");
+    gSystem->Load("libStgMaker.so");
 
     TString qaoutname(gSystem->BaseName(inFile));
     qaoutname.ReplaceAll(".fzd", ".FastSimu.QA.root");
 
     // Create fast simulator and add after event maker
     if (_geom.Contains("dev2021")) {
-        StFtsFastSimulatorMaker *frssim = new StFtsFastSimulatorMaker();
+        StSiSimulatorMaker *frssim = new StSiSimulatorMaker();
 
         frssim->setPointHits(); // X&Y combined to points
         frssim->setPixels(nR, nS, nP);
-        frssim->setRaster(0.1);
+        frssim->setRaster(0.0);
 
         if (SiIneff)
             frssim->setInEfficiency(0.1);
@@ -70,8 +76,17 @@ void fts_fast_sim(int n = 1000,
 
         // NOTE: WAS AddBefore( "0Event", frssim)
         // but changed sonce "event" was removed from chain
-        cout << "Adding StFtsFastSimulatorMaker to chain" << endl;
+        cout << "Adding StSiSimulatorMaker to chain" << endl;
         chain->AddMaker(frssim);
+
+        StgMaker *gmk = new StgMaker();
+        gmk->SetConfigFile( configFile );
+        gmk->GenerateTree( false );
+        chain->AddAfter( "fsiSim", gmk );
+
+        // And initialize it, since we have already initialized the chain
+        // gmk->Init();
+
     }
 
     chain->Init();
