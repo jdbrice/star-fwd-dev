@@ -28,7 +28,7 @@ TFile *output = 0;
 
 void do_simple_ana(int i);
 // "fzd/f7_testg.fzd"
-void si_study(   int n = 1000,
+void slow_si_study(   int n = 1000,
                   const char *inFile = "fzd/shenghui.fzd",
                   std::string configFile = "config/fast_sim_default.xml",
                   const char *geom = "dev2021",
@@ -51,7 +51,7 @@ void si_study(   int n = 1000,
     // Needed for StarRandom
     // gSystem->Load( "StarGeneratorUtil" );
 
-    gSystem->Load("libStSiSimulatorMaker.so");
+    gSystem->Load("libStSiSlowSimulatorMaker.so");
 
     gSystem->Load("libgenfit2.so");
    gSystem->Load("libKiTrack.so");
@@ -63,7 +63,7 @@ void si_study(   int n = 1000,
 
     // Create fast simulator and add after event maker
     if (_geom.Contains("dev2021")) {
-        StSiSimulatorMaker *frssim = new StSiSimulatorMaker();
+        StSiSlowSimulatorMaker *frssim = new StSiSlowSimulatorMaker();
 
         frssim->setPointHits(); // X&Y combined to points
         frssim->setPixels(nR, nS, nP);
@@ -76,7 +76,7 @@ void si_study(   int n = 1000,
 
         // NOTE: WAS AddBefore( "0Event", frssim)
         // but changed sonce "event" was removed from chain
-        cout << "Adding StSiSimulatorMaker to chain" << endl;
+        cout << "Adding StSiSlowSimulatorMaker to chain" << endl;
         chain->AddMaker(frssim);
 
         StgMaker *gmk = new StgMaker();

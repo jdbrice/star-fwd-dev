@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Output url="DEBUG_MC_Finding.root" />
+
+	<TrackFitter refitSi="true" mcSeed="false" >
+		<Vertex sigmaXY="0.02" sigmaZ="5.0" includeInFit="true" />
+		
+		<!-- for MC only -->
+		<Hits sigmaXY="0.01" useFCM="true" />
+	</TrackFitter>
+</config>
