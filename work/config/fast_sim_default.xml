@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-    <Output url="SlowSimDefault.root" />
+    <Output url="SlowSimDefault_sTGC1.root" />
 
     <TrackFinder nIterations="1">
         <Iteration> <!-- Options for first iteration -->
@@ -33,8 +33,8 @@
 
     </TrackFinder>
 
-    <TrackFitter refitSi="true" mcSeed="false" >
-        <Vertex sigmaXY="0.02" sigmaZ="5.0" includeInFit="true" />
+    <TrackFitter refitSi="false" mcSeed="false" >
+        <Vertex sigmaXY="0.05" sigmaZ="5.0" includeInFit="true" />
         
         <!-- for MC only -->
         <Hits sigmaXY="0.01" useFCM="true" />

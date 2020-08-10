@@ -28,7 +28,7 @@ TFile *output = 0;
 
 void do_simple_ana(int i);
 // "fzd/f7_testg.fzd"
-void si_study(   int n = 1000,
+void si_study(   int n = 1,
                   const char *inFile = "fzd/shenghui.fzd",
                   std::string configFile = "config/fast_sim_default.xml",
                   const char *geom = "dev2021",

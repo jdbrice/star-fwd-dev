@@ -22,7 +22,9 @@ make StSiSimulatorMaker/fast -j2 && cp /tmp/star-build/StRoot/StSiSimulatorMaker
 
 make StSiSlowSimulatorMaker/fast -j2 && cp /tmp/star-build/StRoot/StSiSlowSimulatorMaker/libStSiSlowSimulatorMaker.so /tmp/star-install/lib/libStSiSlowSimulatorMaker.so
 
-# make StFstFitter/fast -j2 && cp /tmp/star-build/StRoot/StFstFitter/libStFstFitter.so /tmp/star-install/lib/libStSiSimulatorMaker.so
+# Build + install the StStgcSimulatorMaker
+make StFTTSimulatorMaker/fast -j2 && cp /tmp/star-build/StRoot/StFTTSimulatorMaker/libStFTTSimulatorMaker.so /tmp/star-install/lib/libStFTTSimulatorMaker.so
+
 
 
 cd /tmp/work
