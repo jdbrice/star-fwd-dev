@@ -1,6 +1,6 @@
 # star-fwd-dev
 
-Development environment for the STAR Forward tracking package (inside StRoot)
+Development environment for the official STAR Forward tracking package (as part of StRoot)
 
 ## Setup
 Clone the repo:
@@ -15,7 +15,7 @@ git submodule update --init --recursive
 ```
 
 ## Modifying and building
-The tracking code lives in `star-sw/StRoot/StgMaker/` so you can edit the code here.
+The tracking code lives in `star-sw/StRoot/StFwdTrackMaker/` so you can edit the code here.
 The Fst fast simulator is in `star-sw/StRoot/StFstFastSimulatorMaker/`.
 After making changes you can rebuild the code with:
 ```sh
@@ -55,7 +55,7 @@ Once inside the docker container session:
 ```sh
 ./fst_study.C
 ```
-This will run the fast sim and StgMaker on the given `.fzd` and `config.xml` file. You can gain additional control over the parameters by running it as a root macro:
+This will run the fast sim and StFwdTrackMaker on the given `.fzd` and `config.xml` file. You can gain additional control over the parameters by running it as a root macro:
 ```sh
 root4star -b -q -l 'fst_study.C( ... )'
 ```
