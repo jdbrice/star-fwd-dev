@@ -14,17 +14,13 @@ cmake /tmp/star-sw -DSTAR_SRC=/tmp/star-cvs \
 fi
 
 
-# Build + Install StgMaker Fast
-make StgMaker/fast -j2 && cp /tmp/star-build/StRoot/StgMaker/libStgMaker.so /tmp/star-install/lib/libStgMaker.so
+# Build + Install StFwdTrackMaker Fast
+make StFwdTrackMaker/fast -j2 && cp /tmp/star-build/StRoot/StFwdTrackMaker/libStFwdTrackMaker.so /tmp/star-install/lib/libStFwdTrackMaker.so
 
-# Build + install StSiSimulatorMaker Fast
-make StSiSimulatorMaker/fast -j2 && cp /tmp/star-build/StRoot/StSiSimulatorMaker/libStSiSimulatorMaker.so /tmp/star-install/lib/libStSiSimulatorMaker.so
-
-make StSiSlowSimulatorMaker/fast -j2 && cp /tmp/star-build/StRoot/StSiSlowSimulatorMaker/libStSiSlowSimulatorMaker.so /tmp/star-install/lib/libStSiSlowSimulatorMaker.so
+# Build + install StFstSimMaker Fast
+make StFstSimMaker/fast -j2 && cp /tmp/star-build/StRoot/StFstSimMaker/libStFstSimMaker.so /tmp/star-install/lib/libStFstSimMaker.so
 
 # Build + install the StStgcSimulatorMaker
-make StFTTSimulatorMaker/fast -j2 && cp /tmp/star-build/StRoot/StFTTSimulatorMaker/libStFTTSimulatorMaker.so /tmp/star-install/lib/libStFTTSimulatorMaker.so
-
-
+make StFttSimMaker/fast -j2 && cp /tmp/star-build/StRoot/StFttSimMaker/libStFttSimMaker.so /tmp/star-install/lib/libStFttSimMaker.so
 
 cd /tmp/work
