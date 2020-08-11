@@ -22,39 +22,37 @@ void fast_track(   int n = 100,
     // StarMagField::setConstBz(true);
 
     gSystem->Load("libMathMore.so");
-    gSystem->Load("libStSiSimulatorMaker.so");
-    gSystem->Load("libStFTTSimulatorMaker.so");
+    gSystem->Load("libStFstSimMaker.so");
+    gSystem->Load("libStFttSimMaker.so");
 
     gSystem->Load("libgenfit2.so");
     gSystem->Load("libKiTrack.so");
     gSystem->Load("libStEventUtilities.so");
-    gSystem->Load("libStgMaker.so");
+    gSystem->Load("libStFwdTrackMaker.so");
 
-    StFTTSimulatorMaker *fttSim = new StFTTSimulatorMaker();
-    cout << "Adding StFTTSimulatorMaker to chain" << endl;
-    chain->AddMaker(fttSim);
+    StFTTSimulatorMaker *fttFastSim = new StFttFastSimMaker();
+    cout << "Adding StFttFastSimMaker to chain" << endl;
+    chain->AddMaker(fttFastSim);
 
     TString qaoutname(gSystem->BaseName(inFile));
     qaoutname.ReplaceAll(".fzd", ".FastSimu.QA.root");
 
     // Create fast simulator and add after event maker
-    StSiSimulatorMaker *frssim = new StSiSimulatorMaker();
+    StFstFastSimMaker *fstFastSim = new StFstFastSimMaker();
 
-    frssim->setPointHits(); // X&Y combined to points
-    frssim->setPixels(8, 12, 128);
-    frssim->setRaster(0.0);
+    fstFastSim->setPointHits(); // X&Y combined to points 
+    fstFastSim->setPixels(8, 12, 128); // set the digitization options, note these cannot actually be changed without code change.
+    fstFastSim->setRaster(0.0); // raster between layers
 
     if (SiIneff)
-        frssim->setInEfficiency(0.1);
+        fstFastSim->setInEfficiency(0.1); // inefficiency of Si 
 
-    frssim->setQAFileName(qaoutname);
+    fstFastSim->setQAFileName(qaoutname);
 
-    // NOTE: WAS AddBefore( "0Event", frssim)
-    // but changed sonce "event" was removed from chain
-    cout << "Adding StSiSimulatorMaker to chain" << endl;
-    chain->AddMaker(frssim);
+    cout << "Adding StFstFastSimMaker to chain" << endl;
+    chain->AddMaker(fstFastSim);
 
-    StgMaker *gmk = new StgMaker();
+    StFwdTrackMaker *gmk = new StFwdTrackMaker();
     gmk->SetConfigFile( configFile );
     gmk->GenerateTree( false );
     chain->AddAfter( "fsiSim", gmk );
