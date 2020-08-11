@@ -30,7 +30,7 @@ void fast_track(   int n = 100,
     gSystem->Load("libStEventUtilities.so");
     gSystem->Load("libStFwdTrackMaker.so");
 
-    StFTTSimulatorMaker *fttFastSim = new StFttFastSimMaker();
+    StFttFastSimMaker *fttFastSim = new StFttFastSimMaker();
     cout << "Adding StFttFastSimMaker to chain" << endl;
     chain->AddMaker(fttFastSim);
 
@@ -55,7 +55,8 @@ void fast_track(   int n = 100,
     StFwdTrackMaker *gmk = new StFwdTrackMaker();
     gmk->SetConfigFile( configFile );
     gmk->GenerateTree( false );
-    chain->AddAfter( "fsiSim", gmk );
+    // chain->AddAfter( "fsiSim", gmk );
+    chain->AddMaker(gmk);
 
     chain->Init();
 

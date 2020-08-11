@@ -3,7 +3,7 @@
 
 TFile *output = 0;
 
-void stgc_fast_sim(int n = 1000,
+void ftt_fast_sim(int n = 1000,
                   const char *inFile = "fzd/f12_testg.fzd",
                   const char *geom = "dev2021" ) {
     TString _geom = geom;
@@ -49,6 +49,20 @@ void stgc_fast_sim(int n = 1000,
         chain->Clear();
         if (kStOK != chain->Make())
             break;
+
+        // Check how many hits were written
+        StEvent *event = (StEvent *)chain->GetDataSet("StEvent");
+        if (0 == event) {
+            cout << "No event found" << endl;
+            continue;
+        }
+
+        StRnDHitCollection *rndCollection = event->rndHitCollection();
+        if (0 == rndCollection) {
+            cout << "No collection found" << endl;
+        } else {
+            cout << "Found " << rndCollection->hits().size() << " hits" << endl;
+        }
     }
 
     output->cd();
