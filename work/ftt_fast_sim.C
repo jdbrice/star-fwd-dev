@@ -23,21 +23,16 @@ void stgc_fast_sim(int n = 1000,
     // Needed for StarRandom
     // gSystem->Load( "StarGeneratorUtil" );
 
-    gSystem->Load("libStFTTSimulatorMaker.so");
+    gSystem->Load("libStFttSimMaker.so");
 
     TString qaoutname(gSystem->BaseName(inFile));
     qaoutname.ReplaceAll(".fzd", ".FastSimu.QA.root");
 
     // Create fast simulator and add after event maker
     
-    StFTTSimulatorMaker *fttSim = new StFTTSimulatorMaker();
-
-    // fttSim->setQAFileName(qaoutname);
-
-    // NOTE: WAS AddBefore( "0Event", fttSim)
-    // but changed sonce "event" was removed from chain
-    cout << "Adding StFTTSimulatorMaker to chain" << endl;
-    chain->AddMaker(fttSim);
+    StFttFastSimMaker *fttFastSim = new StFttFastSimMaker();
+    cout << "Adding StFttFastSimMaker to chain" << endl;
+    chain->AddMaker(fttFastSim);
     chain->Init();
 
     // Output filename setup

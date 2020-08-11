@@ -50,28 +50,28 @@ void si_fast_sim(int n = 1000,
     // Needed for StarRandom
     // gSystem->Load( "StarGeneratorUtil" );
 
-    gSystem->Load("libStSiSimulatorMaker.so");
+    gSystem->Load("libStFstSimMaker.so");
 
     TString qaoutname(gSystem->BaseName(inFile));
     qaoutname.ReplaceAll(".fzd", ".FastSimu.QA.root");
 
     // Create fast simulator and add after event maker
     if (_geom.Contains("dev2021")) {
-        StSiSimulatorMaker *frssim = new StSiSimulatorMaker();
+        StFstFastSimMaker *fstFastSim = new StFstFastSimMaker();
 
-        frssim->setPointHits(); // X&Y combined to points
-        frssim->setPixels(nR, nS, nP);
-        frssim->setRaster(0.1);
+        fstFastSim->setPointHits(); // X&Y combined to points
+        fstFastSim->setPixels(nR, nS, nP);
+        fstFastSim->setRaster(0.1);
 
         if (SiIneff)
-            frssim->setInEfficiency(0.1);
+            fstFastSim->setInEfficiency(0.1);
 
-        frssim->setQAFileName(qaoutname);
+        fstFastSim->setQAFileName(qaoutname);
 
-        // NOTE: WAS AddBefore( "0Event", frssim)
+        // NOTE: WAS AddBefore( "0Event", fstFastSim)
         // but changed sonce "event" was removed from chain
-        cout << "Adding StSiSimulatorMaker to chain" << endl;
-        chain->AddMaker(frssim);
+        cout << "Adding StFstFastSimMaker to chain" << endl;
+        chain->AddMaker(fstFastSim);
     }
 
     chain->Init();
